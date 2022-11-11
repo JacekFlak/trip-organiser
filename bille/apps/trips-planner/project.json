@@ -1,0 +1,83 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/trips-planner/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/trips-planner",
+        "index": "apps/trips-planner/src/index.html",
+        "baseHref": "/",
+        "main": "apps/trips-planner/src/main.tsx",
+        "polyfills": "apps/trips-planner/src/polyfills.ts",
+        "tsConfig": "apps/trips-planner/tsconfig.app.json",
+        "assets": [
+          "apps/trips-planner/src/favicon.ico",
+          "apps/trips-planner/src/assets"
+        ],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/trips-planner/src/environments/environment.ts",
+              "with": "apps/trips-planner/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "trips-planner:build",
+        "hmr": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "trips-planner:build:development"
+        },
+        "production": {
+          "buildTarget": "trips-planner:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/trips-planner/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/trips-planner"],
+      "options": {
+        "jestConfig": "apps/trips-planner/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

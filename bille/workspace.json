@@ -7,6 +7,8 @@
     "billespace-services": "libs/billespace-services",
     "billespace-store": "libs/billespace-store",
     "developer-kit": "libs/developer-kit",
+    "trips-planner": "apps/trips-planner",
+    "trips-planner-e2e": "apps/trips-planner-e2e",
     "ui": "libs/ui",
     "ui-e2e": "apps/ui-e2e"
   }
